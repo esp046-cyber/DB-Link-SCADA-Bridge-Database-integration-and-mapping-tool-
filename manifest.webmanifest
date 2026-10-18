@@ -1,0 +1,35 @@
+{
+  "name": "DB-Link SCADA Bridge",
+  "short_name": "DB-Link SCADA",
+  "description": "Wonderware / AVEVA SQL integration toolkit: tag-to-column mapping, QuickScript and ArchestrA script generation, storage estimation and FAT/SAT documentation.",
+  "id": "/",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0B0F19",
+  "theme_color": "#0EA5E9",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-72.png", "sizes": "72x72", "type": "image/png" },
+    { "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "icons/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "icons/icon-144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "icons/icon-152.png", "sizes": "152x152", "type": "image/png" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-384.png", "sizes": "384x384", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "New Bind List", "short_name": "Bind List", "url": "./index.html?mod=mapper&new=1", "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }] },
+    { "name": "QuickScript Generator", "short_name": "QuickScript", "url": "./index.html?mod=code", "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }] },
+    { "name": "Storage Calculator", "short_name": "Storage", "url": "./index.html?mod=conn#estimator", "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }] }
+  ],
+  "screenshots": [
+    { "src": "icons/screenshot-wide.png", "sizes": "1280x720", "type": "image/png", "form_factor": "wide", "label": "Bind List mapper with type validation" },
+    { "src": "icons/screenshot-narrow.png", "sizes": "540x960", "type": "image/png", "form_factor": "narrow", "label": "QuickScript generator on mobile" }
+  ]
+}

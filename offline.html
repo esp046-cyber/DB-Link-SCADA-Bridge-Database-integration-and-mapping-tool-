@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DB-Link SCADA Bridge - Offline</title>
+<meta name="theme-color" content="#0EA5E9">
+<style>
+  :root{--bg:#0B0F19;--card:#111827;--bd:#1E293B;--cy:#0EA5E9;--am:#F59E0B;--tx:#E5E7EB;--mut:#94A3B8}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 Inter,system-ui,sans-serif;padding:24px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:20px;margin:0 0 4px}
+  .tag{display:inline-block;background:var(--am);color:#0B0F19;font-weight:700;font-size:12px;padding:2px 8px;border-radius:4px;letter-spacing:.06em}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px;margin-top:16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--bd)}
+  th{color:var(--mut);font-weight:600}
+  code{font-family:"JetBrains Mono","Fira Code",monospace}
+  .btn{background:var(--cy);color:#04121c;border:0;border-radius:6px;padding:8px 14px;font-weight:700;cursor:pointer}
+  p{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">OFFLINE</span>
+  <h1>DB-Link SCADA Bridge</h1>
+  <p>The network is unavailable. Your projects are stored on this device and the app shell works offline once it has loaded online at least once.</p>
+  <button class="btn" onclick="location.href='index.html'">Open app</button>
+  <button class="btn" onclick="location.reload()">Retry connection</button>
+
+  <div class="card">
+    <h2 style="margin:0 0 8px;font-size:16px">Cached project viewer (read-only)</h2>
+    <div id="projects"><p>Loading local projects...</p></div>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('projects');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  try {
+    var req = indexedDB.open('dblink-scada', 1);
+    req.onerror = function(){ box.innerHTML = '<p>No local database found.</p>'; };
+    req.onsuccess = function () {
+      var db = req.result;
+      if (!db.objectStoreNames.contains('projects')) { box.innerHTML = '<p>No saved projects yet.</p>'; return; }
+      var all = db.transaction('projects').objectStore('projects').getAll();
+      all.onsuccess = function () {
+        var list = all.result || [];
+        if (!list.length) { box.innerHTML = '<p>No saved projects yet.</p>'; return; }
+        box.innerHTML = list.map(function (p) {
+          var rows = (p.tags || []).map(function (t) {
+            return '<tr><td><code>' + esc(t.tag) + '</code></td><td>' + esc(t.tagType) + '</td><td><code>' + esc(t.col) + '</code></td><td>' + esc(t.sqlType) + '</td></tr>';
+          }).join('');
+          return '<h3 style="margin:14px 0 4px;font-size:14px">' + esc(p.name) + ' <small style="color:#94A3B8">&rarr; ' + esc(p.table || '') + '</small></h3>' +
+            '<table><thead><tr><th>Tag</th><th>Type</th><th>Column</th><th>SQL type</th></tr></thead><tbody>' + rows + '</tbody></table>';
+        }).join('');
+      };
+    };
+  } catch (e) { box.innerHTML = '<p>Local storage is not available.</p>'; }
+})();
+</script>
+</body>
+</html>
