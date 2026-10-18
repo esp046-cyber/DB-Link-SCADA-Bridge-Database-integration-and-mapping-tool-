@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="DB-Link SCADA Bridge">
+  <rect width="512" height="512" rx="96" fill="#0B0F19"/>
+  <rect x="16" y="16" width="480" height="480" rx="84" fill="none" stroke="#1E293B" stroke-width="8"/>
+  <!-- SCADA node -->
+  <rect x="48" y="196" width="112" height="120" rx="14" fill="#111827" stroke="#10B981" stroke-width="10"/>
+  <polyline points="68,280 92,244 112,268 140,220" fill="none" stroke="#10B981" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- bridge -->
+  <line x1="160" y1="256" x2="256" y2="256" stroke="#F59E0B" stroke-width="12" stroke-dasharray="14 12"/>
+  <polygon points="244,236 276,256 244,276" fill="#F59E0B"/>
+  <!-- database cylinder -->
+  <path d="M264 160v192c0 17 37 30 82 30s82-13 82-30V160z" fill="#0EA5E9" opacity=".18"/>
+  <ellipse cx="346" cy="160" rx="82" ry="30" fill="#0EA5E9" transform="translate(0 0)" opacity=".95"/>
+  <path d="M264 160v192c0 17 37 30 82 30s82-13 82-30V160" fill="none" stroke="#0EA5E9" stroke-width="12"/>
+  <path d="M264 224c0 17 37 30 82 30s82-13 82-30M264 288c0 17 37 30 82 30s82-13 82-30" fill="none" stroke="#0EA5E9" stroke-width="10"/>
+</svg>
